@@ -14,7 +14,7 @@ class Gift extends Component {
     const { removeGift, gift } = this.props;
 
     return (
-      <div>
+      <div className={"gift"}>
         <Form>
           <FormGroup>
             <FormLabel>Person</FormLabel>
