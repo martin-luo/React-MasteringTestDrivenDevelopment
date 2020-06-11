@@ -11,6 +11,8 @@ class Gift extends Component {
   state = { person: "", present: "" };
 
   render() {
+    const { removeGift, gift } = this.props;
+
     return (
       <div>
         <Form>
@@ -30,6 +32,9 @@ class Gift extends Component {
               }
             />
           </FormGroup>
+          <Button className={"btn-remove"} onClick={() => removeGift(gift.id)}>
+            Remove Gift
+          </Button>
         </Form>
       </div>
     );
