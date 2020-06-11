@@ -1,13 +1,21 @@
 import { balanceReducer } from "./balance";
-import { SET_BALANCE, DEPOSIT, WITHDRAWN } from "../actions/constants";
+import { SET_BALANCE, DEPOSIT, WITHDRAW } from "../actions/constants";
 
 describe("balanceReducer", () => {
-  it("sets a balance", () => {
-    const balance = 10;
+  describe("when initializing", () => {
+    it("sets a balance", () => {
+      const balance = 10;
 
-    expect(
-      balanceReducer(undefined, { type: SET_BALANCE, payload: balance })
-    ).toEqual(balance);
+      expect(
+        balanceReducer(undefined, { type: SET_BALANCE, payload: balance })
+      ).toEqual(balance);
+    });
+
+    describe("then re-initializating", () => {
+      it("reads the balance from cookies", () => {
+        expect(balanceReducer(undefined, {})).toEqual(balance);
+      });
+    });
   });
 
   it("deposits into the balance", () => {
@@ -19,15 +27,15 @@ describe("balanceReducer", () => {
     ).toEqual(depositAmount + initialBalance);
   });
 
-  it("withdrawn from the balance", () => {
+  it("withdraws from the balance", () => {
     const withdrawnAmount = 10;
     const initialBalance = 20;
 
     expect(
       balanceReducer(initialBalance, {
-        type: WITHDRAWN,
+        type: WITHDRAW,
         payload: withdrawnAmount,
       })
-    ).toEqual(Math.max(initialBalance - withdrawnAmount, 0));
+    ).toEqual(initialBalance - withdrawnAmount);
   });
 });
