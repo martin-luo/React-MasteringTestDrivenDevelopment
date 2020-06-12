@@ -2,10 +2,10 @@ import { balanceReducer } from "./balance";
 import { SET_BALANCE, DEPOSIT, WITHDRAW } from "../actions/constants";
 
 describe("balanceReducer", () => {
+  const balance = 10;
+
   describe("when initializing", () => {
     it("sets a balance", () => {
-      const balance = 10;
-
       expect(
         balanceReducer(undefined, { type: SET_BALANCE, payload: balance })
       ).toEqual(balance);
